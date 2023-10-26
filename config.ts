@@ -1,9 +1,17 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 export const config = {
   google: {
-    clientId:
-      "576570203703-ld7d328olitkom43mdc5dpg9eg2b5n6c.apps.googleusercontent.com",
-    clientSecret: "OCSPX-l_nuXUjsp5Lluetd3XZxI2MtqaAx",
-    redirectUri: "http://localhost:3000/oauth2callback",
-    scopes: ["https://www.googleapis.com/auth/calendar"],
+    clientId: process.env.GOOGLE_CLIENT_ID || "",
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+    redirectUri: process.env.GOOGLE_REDIRECT_URI || "",
+    scopes: (process.env.GOOGLE_SCOPES || "").split(" "), // Split the scopes into an array
+  },
+  airtable: {
+    personalAccessToken: process.env.AIRTABLE_PERSONAL_ACCESS_TOKEN || "",
+  },
+  notion: {
+    token: process.env.NOTION_TOKEN || "",
   },
 };
