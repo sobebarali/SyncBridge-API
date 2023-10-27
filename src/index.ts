@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
+import mongoose from "mongoose";
 import { rateLimit } from "express-rate-limit";
 import calendarRouter from "./routes/googleCalenderRoutes";
 import oauth2Router from "./routes/googleOauth2Routes";
@@ -10,7 +11,6 @@ import notionRouter from "./routes/notionRoutes";
 
 const app = express();
 const port = 3000;
-
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -28,17 +28,23 @@ const limiter = rateLimit({
 // Apply the rate limiting middleware to all requests.
 app.use(limiter);
 
-
 app.use(oauth2Router);
 app.use("/api", calendarRouter);
 app.use("/api", taskRouter);
 app.use("/api", notionRouter);
 
-
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.listen(port, () => {
-  console.log(`Server listening at http://localhost:${port}`);
-});
+mongoose
+  .connect("mongodb://localhost:27017/daas-integration-api")
+  .then(() => {
+    console.log("MongoDB connected");
+    app.listen(port, () =>
+      console.log(`Server running on http://localhost:${port}`)
+    );
+  })
+  .catch((error) => {
+    throw error;
+  });
