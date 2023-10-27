@@ -1,6 +1,15 @@
 import { notion } from "../../services/notionService";
+import { APIErrorCode } from "@notionhq/client";
 
-export async function createBlock({ pageId }: { pageId: string }) {
+export async function createBlock({
+  pageId,
+  headingContent,
+  paragraphContent,
+}: {
+  pageId: string;
+  headingContent?: string;
+  paragraphContent?: string;
+}) {
   try {
     const response = await notion.blocks.children.append({
       block_id: pageId,
@@ -10,7 +19,7 @@ export async function createBlock({ pageId }: { pageId: string }) {
             rich_text: [
               {
                 text: {
-                  content: "Lacinato kale",
+                  content: headingContent || "Lacinato Kale",
                 },
               },
             ],
@@ -21,8 +30,7 @@ export async function createBlock({ pageId }: { pageId: string }) {
             rich_text: [
               {
                 text: {
-                  content:
-                    "Lacinato kale is a variety of kale with a long tradition in Italian cuisine, especially that of Tuscany. It is also known as Tuscan kale, Italian kale, dinosaur kale, kale, flat back kale, palm tree kale, or black Tuscan palm.",
+                  content: paragraphContent || "Default paragraph content",
                   link: {
                     url: "https://en.wikipedia.org/wiki/Lacinato_kale",
                   },
@@ -36,7 +44,7 @@ export async function createBlock({ pageId }: { pageId: string }) {
 
     return response;
   } catch (error) {
-    console.error(error);
+    console.error(`Error creating block: ${error}`);
     throw error;
   }
 }

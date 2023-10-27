@@ -10,6 +10,7 @@ export default async function generateAuthUrl() {
 
     return url;
   } catch (error) {
+    console.error("Error generating authentication URL:", error);
     return error;
   }
 }

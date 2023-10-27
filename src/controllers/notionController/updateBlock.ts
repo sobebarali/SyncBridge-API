@@ -26,6 +26,7 @@ export default async function updateBlock({
 
     return response;
   } catch (error) {
-    console.error(error);
+    console.error(`Error updating block: ${error}`);
+    throw error;
   }
 }

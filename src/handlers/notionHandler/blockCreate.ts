@@ -3,7 +3,7 @@ import { createBlock } from "../../controllers/notionController/createBlock";
 
 export async function blockCreate(req: Request, res: Response) {
   try {
-    const { pageId } = req.body;
+    const { pageId, headingContent, paragraphContent } = req.body;
 
     if (!pageId) {
       return res
@@ -28,6 +28,8 @@ export async function blockCreate(req: Request, res: Response) {
     
     const block = await createBlock({
       pageId: formattedPageId,
+      headingContent,
+      paragraphContent,
     });
 
     let data: any = block?.results?.map((block: any) => {

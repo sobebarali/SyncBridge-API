@@ -89,7 +89,9 @@ The service is designed to handle errors gracefully. In case of any issues, appr
 
 ### Scalability Considerations
 
-The service is built with scalability in mind, utilizing asynchronous operations where necessary. It can be easily scaled horizontally to handle increased loads.
+The service is built with scalability in mind, utilizing asynchronous operations where necessary. - It can be easily scaled horizontally to handle increased loads.
+- It Can be deployed behind a load balancer to distribute incoming requests evenly.
+- Caching can be implemented for frequently requested data to reduce redundant API calls using AWS cloudfront.
 
 ### Code Quality
 
