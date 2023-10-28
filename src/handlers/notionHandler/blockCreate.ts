@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createBlock } from "../../controllers/notionController/createBlock";
+import { createBlock } from "../../api/controllers/notionController/createBlock";
 
 export async function blockCreate(req: Request, res: Response) {
   try {
@@ -25,7 +25,6 @@ export async function blockCreate(req: Request, res: Response) {
       20
     )}-${pageId.substring(20)}`;
 
-    
     const block = await createBlock({
       pageId: formattedPageId,
       headingContent,
@@ -40,11 +39,11 @@ export async function blockCreate(req: Request, res: Response) {
         created_time: block.created_time,
         last_edited_time: block.last_edited_time,
       };
-    })
+    });
 
-    res.status(200).json({ data});
+    res.status(200).json({ data });
   } catch (error: any) {
-        console.error("Error creating event", error);
+    console.error("Error creating event", error);
     if (error.name === "APIResponseError" && error.status === 404) {
       console.error(
         "Block not found. Make sure it is shared with the integration."

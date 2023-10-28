@@ -1,12 +1,19 @@
 import express from "express";
-import { recordCreate } from "../handlers/airtableHandler/recordCreate";
-import { recordList } from "../handlers/airtableHandler/recordList";
+import endpointRecordCreate from "../api/endpoints/airtableEndpoint/record/create";
+import endpointRecordDelete from "../api/endpoints/airtableEndpoint/record/delete";
+import endpointRecordGet from "../api/endpoints/airtableEndpoint/record/get";
+import endpointRecordList from "../api/endpoints/airtableEndpoint/record/list";
+import endpointRecordUpdate from "../api/endpoints/airtableEndpoint/record/update";
+import endpointWebhookCreate from "../api/endpoints/airtableEndpoint/webhook/create";
 
+const airtableRouter = express.Router();
 
-const taskRouter = express.Router();
+airtableRouter.post("/record/create", endpointRecordCreate);
+airtableRouter.delete("/record/delete", endpointRecordDelete);
+airtableRouter.get("/record/get", endpointRecordGet);
+airtableRouter.get("/record/list", endpointRecordList);
+airtableRouter.put("/record/update", endpointRecordUpdate);
 
-taskRouter.post("/task/create", recordCreate);
-taskRouter.get("/task/list", recordList);
+airtableRouter.post("/webhook/create", endpointWebhookCreate);
 
-
-export default taskRouter;
+export default airtableRouter;

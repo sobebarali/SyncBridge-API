@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 import { rateLimit } from "express-rate-limit";
 import calendarRouter from "./routes/googleCalenderRoutes";
 import oauth2Router from "./routes/googleOauth2Routes";
-import taskRouter from "./routes/airtableRoutes";
+import airtableRouter from "./routes/airtableRoutes";
 import notionRouter from "./routes/notionRoutes";
 
 const app = express();
@@ -30,8 +30,20 @@ app.use(limiter);
 
 app.use(oauth2Router);
 app.use("/api", calendarRouter);
-app.use("/api", taskRouter);
+app.use("/api", airtableRouter);
 app.use("/api", notionRouter);
+
+// Handle undefined routes
+app.use((req, res, next) => {
+  res.status(404).send({
+    data: null,
+    error: {
+      code: "NOT_FOUND",
+      message: "The requested resource does not exist",
+    },
+  });
+});
+
 
 app.get("/", (req, res) => {
   res.send("Hello World!");

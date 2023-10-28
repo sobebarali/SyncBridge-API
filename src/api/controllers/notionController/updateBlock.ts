@@ -1,4 +1,4 @@
-import { notion } from "../../services/notionService";
+import { notion } from "../../../services/notionService";
 
 export default async function updateBlock({
   blockId,

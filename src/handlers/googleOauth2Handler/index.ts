@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import generateAuthUrl from "../../controllers/googleOauth2Controller/generateAuthUrl";
-import getTokens from "../../controllers/googleOauth2Controller/setToken";
+import generateAuthUrl from "../../api/controllers/googleOauth2Controller/generateAuthUrl";
+import getTokens from "../../api/controllers/googleOauth2Controller/setToken";
 
 export async function authUrlGenerate(
   req: Request,

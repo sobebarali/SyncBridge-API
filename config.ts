@@ -10,6 +10,7 @@ export const config = {
   },
   airtable: {
     personalAccessToken: process.env.AIRTABLE_PERSONAL_ACCESS_TOKEN || "",
+    baseId: process.env.AIRTABLE_BASE_ID || "",
   },
   notion: {
     token: process.env.NOTION_TOKEN || "",

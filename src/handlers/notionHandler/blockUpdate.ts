@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import updateBlock from "../../controllers/notionController/updateBlock";
+import updateBlock from "../../api/controllers/notionController/updateBlock";
 
 export async function blockUpdate(req: Request, res: Response) {
   try {
@@ -35,7 +35,7 @@ export async function blockUpdate(req: Request, res: Response) {
       has_children: block.has_children,
       created_time: block.created_time,
       last_edited_time: block.last_edited_time,
-    }
+    };
 
     res.status(200).json({ data });
   } catch (error: any) {

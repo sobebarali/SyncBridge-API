@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createEvent } from "../../controllers/googleCalenderController/createEvent";
+import { createEvent } from "../../api/controllers/googleCalenderController/createEvent";
 
 export async function eventCreate(req: Request, res: Response) {
   try {

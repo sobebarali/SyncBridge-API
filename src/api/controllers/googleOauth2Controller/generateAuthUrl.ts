@@ -1,4 +1,4 @@
-import { getAuth } from "../../services/authService";
+import { getAuth } from "../../../services/authService";
 
 export default async function generateAuthUrl() {
   try {

@@ -1,5 +1,5 @@
 import { google } from "googleapis";
-import { getAuth } from "../../services/authService";
+import { getAuth } from "../../../services/authService";
 
 export async function createEvent({
   summary,

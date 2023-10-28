@@ -1,5 +1,4 @@
-import { notion } from "../../services/notionService";
-import { APIErrorCode } from "@notionhq/client";
+import { notion } from "../../../services/notionService";
 
 export async function createBlock({
   pageId,
