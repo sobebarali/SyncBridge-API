@@ -39,8 +39,8 @@ This backend service is designed to seamlessly integrate with three different th
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/sobebarali/daas-api-integration.git
-   cd daas-api-integration
+   git clone https://github.com/sobebarali/SyncBridge-API.git
+   cd SyncBridge-API
    ```
 
 2. **Install Dependencies:**
