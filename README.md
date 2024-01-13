@@ -1,4 +1,4 @@
-# Project Name
+#  SyncBridge API
 
 ## Backend Service for API Integrations
 
